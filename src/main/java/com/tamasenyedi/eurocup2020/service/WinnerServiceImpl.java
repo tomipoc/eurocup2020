@@ -35,9 +35,6 @@ public class WinnerServiceImpl implements WinnerService {
         // ugly for now :(
         deCounter = new AtomicInteger(couponRepository.countByTerritory(Territory.DE));
         huCounter = new AtomicInteger(couponRepository.countByTerritory(Territory.HU));
-
-        //deCounter = new AtomicInteger(39);
-        //huCounter = new AtomicInteger(78);
     }
 
     public WinnerServiceImpl(UserRepository userRepository, CouponRepository couponRepository, EntityCreator entityCreator, int huStart, int deStart) {
@@ -45,8 +42,8 @@ public class WinnerServiceImpl implements WinnerService {
         this.couponRepository = couponRepository;
         this.entityCreator = entityCreator;
 
-        deCounter = new AtomicInteger(huStart);
-        huCounter = new AtomicInteger(deStart);
+        deCounter = new AtomicInteger(deStart);
+        huCounter = new AtomicInteger(huStart);
     }
 
     @Override
@@ -82,7 +79,8 @@ public class WinnerServiceImpl implements WinnerService {
                 u = entityCreator.createUser(email, age);
             }
 
-            Coupon c = entityCreator.createCoupon(couponCode, territory, didItWin);
+            Coupon c = entityCreator.createCoupon(couponCode, territory);
+            c.setWinner(didItWin);
             u.redeemCoupon(c);
 
             userRepository.save(u);
@@ -123,8 +121,7 @@ public class WinnerServiceImpl implements WinnerService {
     }
 
     private boolean calculateForHandleWin(int currentCnt, int freq, int daily, int max) {
-        //System.out.println("calculateForHandleWin: " + currentCnt);
-        if(currentCnt % freq == 0 && currentCnt < max) {
+        if(currentCnt > 0 && currentCnt % freq == 0 && currentCnt < max) {
             return true;
         }
         // TODO Daily, Max

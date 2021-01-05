@@ -66,24 +66,4 @@ class WinnerServiceImplTest {
 //    void verifyIsPresent() {
 //
 //    }
-
-    @Test
-    void verifyWinnerHU() {
-        String email = "test@test.com";
-        int age = 2;
-        String couponCode = "D45fv3r5tz";
-        String territory = "HU";
-
-        User u = new User();
-        u.setEmail(email);
-        u.setAge(age);
-
-        ServiceResponseDto<BasicResponseDto> dto = winnerService.verify(email, age, couponCode, territory);
-        assertEquals(WinServiceConsts.AGE_LIMIT_STATUS_TEXT, dto.getDataDto().getStatus_text());
-    }
-
-    @Test
-    void verifyTryAgain() {
-
-    }
 }

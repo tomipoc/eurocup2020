@@ -40,20 +40,16 @@ public class IndexRestController {
         return response;
     }
 
-    @PostMapping(
-            value = {"winners"},
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<AbstractDto> incomingCoupon() {
-        ServiceResponseDto<BasicResponseDto> serviceResponseDto = winnerService.verify(
-                userData.getEmail(),
-                userData.getAge(),
-                userData.getCoupon(),
-                userData.getTerritory());
-
-        ResponseEntity<AbstractDto> response =
-                RestResponseEntityBuilder.getInstance().buildResponseEntity(serviceResponseDto);
-
-        return response;
-    }
+//    @PostMapping(
+//            value = {"winners"},
+//            consumes = MediaType.APPLICATION_JSON_VALUE
+//    )
+//    public ResponseEntity<AbstractDto> winners() {
+//        ServiceResponseDto<BasicResponseDto> serviceResponseDto = listService.listWinners();
+//
+//        ResponseEntity<AbstractDto> response =
+//                RestResponseEntityBuilder.getInstance().buildResponseEntity(serviceResponseDto);
+//
+//        return response;
+//    }
 }

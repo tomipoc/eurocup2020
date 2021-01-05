@@ -19,13 +19,13 @@ public class EntityCreatorImpl implements EntityCreator {
     }
 
     @Override
-    public Coupon createCoupon(String couponCode, String territory, boolean didItWin) {
+    public Coupon createCoupon(String couponCode, String territory) {
         Coupon c = new Coupon();
         c.setCode(couponCode);
         c.setRedeemTime(new Date());
         c.setTerritory(Territory.valueOf(territory));
         c.setRedeemed(true);
-        c.setWinner(didItWin);
+        //c.setWinner(didItWin);
         return c;
     }
 }

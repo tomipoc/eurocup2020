@@ -6,5 +6,5 @@ import com.tamasenyedi.eurocup2020.domain.User;
 public interface EntityCreator {
     User createUser(String email, int age);
 
-    Coupon createCoupon(String couponCode, String territory, boolean didItWin);
+    Coupon createCoupon(String couponCode, String territory);
 }
