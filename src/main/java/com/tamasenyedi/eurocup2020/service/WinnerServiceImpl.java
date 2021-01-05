@@ -50,7 +50,6 @@ public class WinnerServiceImpl implements WinnerService {
     public ServiceResponseDto<BasicResponseDto> verify(String email, int age, String couponCode, String territory) {
         BasicResponseDto responseDto = new BasicResponseDto();
 
-
         Optional<Coupon> couponOptional = couponRepository.findByCode(couponCode);
 
         if( validateParams(email, territory) ) {
